@@ -1,0 +1,65 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "S3BucketReadAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets",
+                "s3:ListBucket"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "S3DeveloperGetObjectsByRole",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::legacy-developer-bucket-813337986433/developer/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "s3:ExistingObjectTag/Role": "developer"
+                }
+            }
+        },
+        {
+            "Sid": "S3DeveloperUploadObjectsByRole",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::legacy-developer-bucket-813337986433/developer/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "s3:RequestObjectTag/Role": "developer"
+                }
+            }
+        },
+        {
+            "Sid": "Ec2MonitorAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:Describe*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "CloudWatchReadAccess",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:Describe*",
+                "cloudwatch:Describe*",
+                "cloudwatch:Get*",
+                "cloudwatch:List*",
+                "sns:Get*",
+                "sns:List*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

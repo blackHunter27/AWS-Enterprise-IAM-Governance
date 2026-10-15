@@ -1,0 +1,23 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "freetier:Get*",
+                "invoicing:List*",
+                "invoicing:Get*",
+                "billing:Get*",
+                "account:GetAccountInformation",
+                "cur:Get*",
+                "cur:Validate*",
+                "ce:*",
+                "consolidatedbilling:Get*",
+                "consolidatedbilling:List*",
+                "pricing:DescribeServices"
+            ],
+            "Resource": "*",
+            "Effect": "Allow",
+            "Sid": "BillingForAccountAccess"
+        }
+    ]
+}

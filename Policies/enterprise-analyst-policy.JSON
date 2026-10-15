@@ -1,0 +1,60 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "S3BucketReadAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets",
+                "s3:ListBucket"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "S3AnalystGetObjectsByRole",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::legacy-developer-bucket-813337986433/analyst/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "s3:ExistingObjectTag/Role": "analyst"
+                }
+            }
+        },
+        {
+            "Sid": "S3AnalystUploadObjectsByRole",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::legacy-developer-bucket-813337986433/analyst/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "s3:RequestObjectTag/Role": "analyst"
+                }
+            }
+        },
+        {
+            "Sid": "AnalyticsReportBucketAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::analytics-report-bucket-813337986433",
+                "arn:aws:s3:::analytics-report-bucket-813337986433/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "s3:ExistingObjectTag/Stage": "ObfuscatedReportReady"
+                }
+            }
+        }
+    ]
+}
